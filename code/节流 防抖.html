@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #oDiv{
+            background-color:  grey;
+            color: white;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="oDiv"></div>
+    <script>
+        var oDiv=document.getElementById("oDiv");
+        var count=0;
+        function getUserAction(event){
+            count++;
+            oDiv.innerHTML=count;
+            console.log(this);  //直接调用getUserAction的话this是<div>
+            console.log("event:",event);
+        }
+        oDiv.addEventListener("mousemove",debounce(getUserAction,1000,true));
+        function debounce(func,delay,immediate){
+            var timeout;
+            console.log(this);
+            return function(){
+                console.log(this);
+                var _this=this; //研究一下为什么等号后面的this是指向<div>的
+                var e=arguments;//保存event对象
+                if(timeout) clearTimeout(timeout);//用闭包来保存timeout的状态
+                timeout=setTimeout(function(){
+                    func.apply(_this,e);  //如果不加,getUserAction里面的this就会变成window
+                },delay);
+            }
+        }
+        function throttle(func,waittime){
+            var timer;
+            return function(){
+                _this=this;
+                args=arguments;
+                if(!timer){
+                    timer=setTimeout(
+                        function(){
+                            timer=null;
+                            func.apply(_this,args);
+                        },
+                        waittime
+                    );
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+<!-- //事件委托    正则表达式    对象内函数的函数的this指向
+// /c/ -->

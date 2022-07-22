@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 200px;
+            height: 200px;
+            padding: 20px;
+            overflow: scroll;
+            background-color: red;
+            position: absolute;
+        }
+        #innerbox{
+            width: 100%;
+            height: 600px;
+            background-color: blue;
+        }
+        #innerbox2{
+            width: 100%;
+            height: 600px;
+            background-color: yellow;
+        }
+        #flexbox{
+            width: 100vw;
+            height: 20vh;
+            display: flex;
+            background-color: grey;
+        }
+        #c1{
+            flex:1;
+            background-color: red;
+        }
+        #c2{
+            flex:0;
+            background-color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="innerbox"></div>
+        <div id="innerbox2"></div>
+    </div>
+    <div id="flexbox">
+        <div id="c1">
+
+        </div>
+        <div id="c2">
+
+        </div>
+    </div>
+</body>
+</html>

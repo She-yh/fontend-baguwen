@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            background-color: antiquewhite;
+            
+            width: 100%;
+        }
+        .list{
+            background-color: aquamarine;
+            height: 30px;
+            width: 90%;
+        }
+        section{
+            background-color: blue;
+            height: 40px;
+            width: 80%;
+        }
+        li{
+            background-color: brown;
+            width: 70%;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="container">
+        <li class="list"></li>
+        <li class="list"></li>
+
+        <section>
+            <li></li>
+        </section>
+        <li class="list"></li>
+        <li class="list"></li>
+        <li class="list"></li>
+    </ul>
+    <script>
+        var container=document.getElementById("container");
+        container.addEventListener("click",function(event){
+            var e=event.target;
+            // alert(e.parentNode.id);
+            if(e.parentNode.id=="container"){
+                alert(e.tagName.toLowerCase());
+                alert("ssss");
+            }
+        })
+    </script>
+</body>
+</html>
