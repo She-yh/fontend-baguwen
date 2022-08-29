@@ -16,11 +16,11 @@
             },1000);
         }
         run();
-        return {
-            cancel:()=>{
+        return ()=>{
+                console.log('clear')
                 clearTimeout(timer);
             }
-        }
+        
     }
-    setTimeout(()=>{ssss.cancel()},3000)
+    setTimeout(()=>{ssss()},3000)
 

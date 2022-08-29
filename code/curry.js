@@ -10,7 +10,7 @@ var curry=(func)=>{
 
 function adding(){
     let args = [...arguments]
-    function temp(...arg){
+    return function temp(...arg){
         if(arg.length){
             args = [
                 ...args,
@@ -21,7 +21,6 @@ function adding(){
             return args.reduce((a,b)=> a + b, 0);
         }
     }
-    return temp
 }
 
 console.log(adding(1)(2)(3)(4, 6)())  //15

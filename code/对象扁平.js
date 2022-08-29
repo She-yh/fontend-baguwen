@@ -29,7 +29,7 @@ function flat(obj) {
     }
 }
 var result={};
-plat(o,'',result);
+flat(o,'',result);
 // flat(o);
 console.log(result);
     

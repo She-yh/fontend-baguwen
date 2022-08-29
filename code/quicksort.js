@@ -1,4 +1,4 @@
- var sortArray = function(nums) {
+var sortArray = function(nums) {
     function quickSort(left,right,nums){
         let tmple=left,tmpri=right;
         let tmp=nums[left];

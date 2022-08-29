@@ -27,7 +27,7 @@ class EventEmitter {
           fn();
         }
         if (once) {
-          delete this.list[name]
+          delete this.list[name] //delete是删除对象属性的
         }
       }
     }

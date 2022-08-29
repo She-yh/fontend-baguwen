@@ -13,10 +13,18 @@
             height: 100px;
             text-align: center;
         }
+        #oDiv2{
+            background-color:  black;
+            color: white;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div id="oDiv"></div>
+    <div id="oDiv2"></div>
     <script>
         var oDiv=document.getElementById("oDiv");
         var count=0;
@@ -29,9 +37,7 @@
         oDiv.addEventListener("mousemove",debounce(getUserAction,1000,true));
         function debounce(func,delay,immediate){
             var timeout;
-            console.log(this);
             return function(){
-                console.log(this);
                 var _this=this; //研究一下为什么等号后面的this是指向<div>的
                 var e=arguments;//保存event对象
                 if(timeout) clearTimeout(timeout);//用闭包来保存timeout的状态
@@ -40,19 +46,31 @@
                 },delay);
             }
         }
-        function throttle(func,waittime){
-            var timer;
-            return function(){
-                _this=this;
-                args=arguments;
-                if(!timer){
-                    timer=setTimeout(
-                        function(){
-                            timer=null;
-                            func.apply(_this,args);
-                        },
-                        waittime
-                    );
+        // 节流
+        var oDiv2= document.getElementById("oDiv2");
+        var count2=0;
+        function getUserAction2(event){
+            count2++;
+            oDiv2.innerHTML=count2;
+            console.log(this);  //直接调用getUserAction的话this是<div>
+            console.log("event:",event);
+        }
+        oDiv2.addEventListener("mousemove",throttle(getUserAction2,3000,true));
+        function throttle(fun, delay) {
+            let last, deferTimer
+            return function (args) {
+                let that = this
+                let _args = arguments
+                let now = +new Date()
+                if (last && now < last + delay) { // 如果last不为null并且时间没超时()
+                    clearTimeout(deferTimer)
+                    deferTimer = setTimeout(function () { //确保鼠标移出后还能触发一次
+                        last = now
+                        fun.apply(that, _args)
+                    }, delay)
+                }else { //时间到了
+                    last = now  //第一次进去的时候last=null所以会先执行一次
+                    fun.apply(that,_args)
                 }
             }
         }
