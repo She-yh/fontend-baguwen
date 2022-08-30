@@ -67,12 +67,27 @@ const deepClone = (obj,wMap = new WeakMap()) => {
 
 //数组拍平reduce
 const arr=[1, 2, 3, 4, [1, 2, 3, [1, 2, 3, [1, 2, 3]]], 5];
-console.log(arr);
 function flat(arr){
     return arr.reduce((prev,cur) => {
         return prev.concat(Array.isArray(cur)?flat(cur):cur);
     },[])
 }
-console.log(flat(arr));
 
-//
+//函数预处理
+function fn(a,c){
+    console.log(a);//var a=undefined a没定义的时候用function
+    var a = 123;
+    console.log(a);//a定义了就用var的
+    console.log(c);
+    function a(){
+
+    }
+    if(false) var d = 678;
+    console.log(d)
+    console.log(b);
+    var b = function(){}
+    console.log(b)
+    function c(){}
+    console.log(c)
+}
+fn(1,2);
